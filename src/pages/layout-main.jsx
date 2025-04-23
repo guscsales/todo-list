@@ -16,7 +16,7 @@ export default function LayoutMain() {
         <nav className="flex items-center justify-center gap-4">
           <Text
             as={NavLink}
-            type="body-sm-bold"
+            variant="body-sm-bold"
             to="/"
             className="text-gray-300"
           >
@@ -24,7 +24,7 @@ export default function LayoutMain() {
           </Text>
           <Text
             as={NavLink}
-            type="body-sm-bold"
+            variant="body-sm-bold"
             to="/componentes"
             className="text-gray-300"
           >

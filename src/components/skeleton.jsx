@@ -6,6 +6,7 @@ const skeletonVariants = cva("animate-pulse bg-gray-200", {
     rounded: {
       sm: "rounded-sm",
       lg: "rounded-lg",
+      full: "rounded-full",
     },
   },
   defaultVariants: {

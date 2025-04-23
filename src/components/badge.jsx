@@ -1,34 +1,75 @@
 import {cva} from "class-variance-authority";
+import cn from "classnames";
 import Text from "./text";
+import Skeleton from "./skeleton";
 
-export const badgeVariants = cva("inline-flex py-0.5 px-2 rounded-full", {
-  variants: {
-    type: {
-      primary: "bg-green-light text-green-dark",
-      secondary: "bg-pink-light text-pink-dark",
+export const badgeVariants = cva(
+  "inline-flex items-center justify-center rounded-full",
+  {
+    variants: {
+      variant: {
+        none: "",
+        primary: "bg-green-light text-green-dark",
+        secondary: "bg-pink-light text-pink-dark",
+      },
+      size: {
+        sm: "py-0.5 px-2",
+      },
     },
-  },
-  defaultVariants: {
-    type: "primary",
-  },
-});
+    defaultVariants: {
+      variant: "primary",
+      size: "sm",
+    },
+  }
+);
 
-const badgeTextVariants = cva("mt-px", {
+const badgeTextVariants = cva({
   variants: {
-    type: {
+    variant: {
       primary: "text-green-dark",
       secondary: "text-pink-dark",
     },
   },
   defaultVariants: {
-    type: "primary",
+    variant: "primary",
   },
 });
 
-export default function Badge({type, className, children, ...props}) {
+const badgeSkeletonVariants = cva("", {
+  variants: {
+    size: {
+      sm: "w-5 h-5",
+    },
+  },
+  defaultVariants: {
+    size: "sm",
+  },
+});
+
+export default function Badge({
+  variant,
+  size,
+  className,
+  children,
+  loading,
+  ...props
+}) {
+  if (loading) {
+    return (
+      <Skeleton
+        rounded="full"
+        className={cn(
+          badgeVariants({variant: "none"}),
+          badgeSkeletonVariants({size}),
+          className
+        )}
+      />
+    );
+  }
+
   return (
-    <div className={badgeVariants({type, className})} {...props}>
-      <Text type="body-sm-bold" className={badgeTextVariants({type})}>
+    <div className={badgeVariants({variant, size, className})} {...props}>
+      <Text variant="body-sm-bold" className={badgeTextVariants({variant})}>
         {children}
       </Text>
     </div>

@@ -8,7 +8,7 @@ const cardVariants = cva(
     variants: {
       size: {
         none: "",
-        lg: "p-5",
+        md: "p-5",
       },
     },
     defaultVariants: {

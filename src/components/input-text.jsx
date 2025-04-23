@@ -12,17 +12,25 @@ const inputTextVariants = cva(
       size: {
         md: "px-2 pb-2",
       },
+      disabled: {
+        true: "pointer-events-none",
+      },
     },
     defaultVariants: {
       size: "md",
+      disabled: false,
     },
   }
 );
 
-export default function InputText({size, className, ...props}) {
+export default function InputText({size, className, disabled, ...props}) {
   return (
     <input
-      className={cn(inputTextVariants({size}), textVariants(), className)}
+      className={cn(
+        inputTextVariants({size, disabled}),
+        textVariants(),
+        className
+      )}
       {...props}
     />
   );

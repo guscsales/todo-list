@@ -20,9 +20,9 @@ export default function PageComponents() {
   return (
     <Container className="grid gap-4 p-4">
       <div className="grid gap-2">
-        <Text type="body-sm-bold">Olá Mundo</Text>
+        <Text variant="body-sm-bold">Olá Mundo</Text>
         <Text>Olá Mundo</Text>
-        <Text type="body-md-bold">Olá Mundo</Text>
+        <Text variant="body-md-bold">Olá Mundo</Text>
       </div>
 
       <div>
@@ -39,13 +39,13 @@ export default function PageComponents() {
       </div>
 
       <div className="flex gap-2">
-        <ButtonIcon type="primary" icon={TrashIcon} />
-        <ButtonIcon type="secondary" icon={TrashIcon} />
-        <ButtonIcon type="tertiary" icon={TrashIcon} />
+        <ButtonIcon variant="primary" icon={TrashIcon} />
+        <ButtonIcon variant="secondary" icon={TrashIcon} />
+        <ButtonIcon variant="tertiary" icon={TrashIcon} />
       </div>
 
       <div>
-        <Button type="primary" icon={PlusIcon}>
+        <Button variant="primary" icon={PlusIcon}>
           Nova Tarefa
         </Button>
       </div>
@@ -64,13 +64,13 @@ export default function PageComponents() {
       </div>
 
       <div className="flex gap-2">
-        <Badge type="secondary">5</Badge>
-        <Badge type="primary">2 de 5</Badge>
+        <Badge variant="secondary">5</Badge>
+        <Badge variant="primary">2 de 5</Badge>
       </div>
 
       <div>
         <Card size="lg">
-          <Text type="body-md-bold">Tarefa</Text>
+          <Text variant="body-md-bold">Tarefa</Text>
         </Card>
       </div>
     </Container>

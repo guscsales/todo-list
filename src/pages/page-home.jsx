@@ -1,10 +1,10 @@
 import Container from "../components/container";
-import Text from "../components/text";
+import TaskList from "../core-components/task-list";
 
 export default function PageHome() {
   return (
     <Container>
-      <Text type="body-md-bold">Olá mundo!</Text>
+      <TaskList />
     </Container>
   );
 }

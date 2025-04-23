@@ -3,14 +3,14 @@ import React from "react";
 
 export const textVariants = cva("font-sans text-gray-400 leading-[140%]", {
   variants: {
-    type: {
+    variant: {
       "body-sm-bold": "text-sm leading-6 font-semibold",
       "body-md": "text-base leading-6",
       "body-md-bold": "text-base leading-6 font-semibold",
     },
   },
   defaultVariants: {
-    type: "base",
+    variant: "base",
   },
 });
 
@@ -18,13 +18,13 @@ export default function Text({
   as = "span",
   className,
   children,
-  type,
+  variant,
   ...props
 }) {
   return React.createElement(
     as,
     {
-      className: textVariants({type, className}),
+      className: textVariants({variant, className}),
       ...props,
     },
     children

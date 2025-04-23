@@ -7,7 +7,7 @@ const buttonVariants = cva(
   "flex items-center justify-center cursor-pointer transition rounded-lg group gap-2",
   {
     variants: {
-      type: {
+      variant: {
         primary: "bg-gray-200 hover:bg-pink-light",
       },
       size: {
@@ -21,7 +21,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      type: "primary",
+      variant: "primary",
       size: "md",
       disabled: false,
       handling: false,
@@ -31,7 +31,7 @@ const buttonVariants = cva(
 
 const iconVariants = cva("fill-gray-100 transition", {
   variants: {
-    type: {
+    variant: {
       primary: "fill-pink-base",
     },
     size: {
@@ -42,13 +42,13 @@ const iconVariants = cva("fill-gray-100 transition", {
     },
   },
   defaultVariants: {
-    type: "primary",
+    variant: "primary",
     handling: false,
   },
 });
 
 export default function Button({
-  type,
+  variant,
   size,
   disabled,
   handling,
@@ -60,7 +60,7 @@ export default function Button({
   return (
     <button
       className={buttonVariants({
-        type,
+        variant,
         size,
         disabled,
         handling,
@@ -71,10 +71,10 @@ export default function Button({
       {IconComponent && (
         <Icon
           svg={handling ? SpinnerIcon : IconComponent}
-          className={iconVariants({type, size, handling})}
+          className={iconVariants({variant, size, handling})}
         />
       )}
-      {children && <Text type="base-bold">{children}</Text>}
+      {children && <Text variant="base-bold">{children}</Text>}
     </button>
   );
 }
