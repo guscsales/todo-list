@@ -69,7 +69,7 @@ export default function PageComponents() {
       </div>
 
       <div>
-        <Card size="lg">
+        <Card size="md">
           <Text variant="body-md-bold">Tarefa</Text>
         </Card>
       </div>
