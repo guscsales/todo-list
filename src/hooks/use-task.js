@@ -6,7 +6,6 @@ export default function useTask() {
   const [tasks, setTasks] = useLocalStorage("tasks", []);
   const [isCreatingTask, setIsCreatingTask] = React.useState(false);
   const [isUpdatingTask, setIsUpdatingTask] = React.useState(false);
-  const [isDeletingTask, setIsDeletingTask] = React.useState(false);
 
   async function createTask(payload) {
     setIsCreatingTask(true);
@@ -36,11 +35,8 @@ export default function useTask() {
     );
   }
 
-  async function deleteTask(id) {
-    setIsDeletingTask(true);
-    await delay(1000);
+  function deleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
-    setIsDeletingTask(false);
   }
 
   return {
@@ -50,6 +46,5 @@ export default function useTask() {
     deleteTask,
     isCreatingTask,
     isUpdatingTask,
-    isDeletingTask,
   };
 }

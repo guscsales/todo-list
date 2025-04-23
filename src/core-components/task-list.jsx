@@ -11,7 +11,7 @@ export default function TaskList({className, ...props}) {
   const {createTask, isCreatingTask} = useTask();
 
   async function handleCreateTask() {
-    await createTask({title: ""});
+    await createTask({title: "", state: "creating"});
   }
 
   return (
@@ -41,6 +41,7 @@ export default function TaskList({className, ...props}) {
           className="w-full"
           onClick={handleCreateTask}
           handling={isCreatingTask}
+          disabled={tasks.some((task) => task.state === "creating")}
         >
           Nova tarefa
         </Button>
@@ -48,7 +49,7 @@ export default function TaskList({className, ...props}) {
       {!isLoadingTasks && tasksCount > 0 && (
         <section className="space-y-2">
           {tasks.map((task) => (
-            <TaskItem key={task.id} {...task} editing={!task.title} />
+            <TaskItem key={task.id} {...task} />
           ))}
         </section>
       )}

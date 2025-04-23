@@ -17,30 +17,32 @@ export default function TaskItem({
   title,
   concluded,
   loading,
-  editing = false,
+  state,
   ...props
 }) {
-  const [isEditing, setIsEditing] = React.useState(editing);
+  const [isEditing, setIsEditing] = React.useState(state === "creating");
   const [taskTitle, setTaskTitle] = React.useState(title || "");
-  const {
-    isUpdatingTask,
-    isDeletingTask,
-    updateTaskStatus,
-    deleteTask,
-    updateTask,
-  } = useTask();
+  const {isUpdatingTask, updateTaskStatus, deleteTask, updateTask} = useTask();
 
   function handleUpdateTaskStatus(e) {
     const checked = e.target.checked;
     updateTaskStatus(id, checked);
   }
 
-  async function handleDeleteTask() {
-    await deleteTask(id);
+  function handleDeleteTask() {
+    deleteTask(id);
   }
 
-  function handleToggleEditTask() {
-    setIsEditing((prev) => !prev);
+  function handleEditTask() {
+    setIsEditing(true);
+  }
+
+  function handleExitEditTask() {
+    if (state === "creating") {
+      deleteTask(id);
+    }
+
+    setIsEditing(false);
   }
 
   async function handleSaveTask(e) {
@@ -87,7 +89,7 @@ export default function TaskItem({
           value={taskTitle}
           onChange={handleChangeTaskTitle}
           className="flex-1"
-          disabled={isUpdatingTask || isDeletingTask}
+          disabled={isUpdatingTask}
           required
           autoFocus
         />
@@ -103,7 +105,6 @@ export default function TaskItem({
               size="sm"
               variant="tertiary"
               onClick={handleDeleteTask}
-              handling={isDeletingTask}
             />
             <ButtonIcon
               type="button"
@@ -111,7 +112,7 @@ export default function TaskItem({
               loading={loading}
               size="sm"
               variant="tertiary"
-              onClick={handleToggleEditTask}
+              onClick={handleEditTask}
               key="edit-task"
             />
           </>
@@ -122,7 +123,7 @@ export default function TaskItem({
               icon={XIcon}
               size="sm"
               variant="secondary"
-              onClick={handleToggleEditTask}
+              onClick={handleExitEditTask}
             />
             <ButtonIcon
               icon={CheckIcon}
