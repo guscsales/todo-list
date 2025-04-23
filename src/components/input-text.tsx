@@ -1,5 +1,4 @@
-import cn from "classnames";
-import {cva} from "class-variance-authority";
+import {cva, cx, type VariantProps} from "class-variance-authority";
 import {textVariants} from "./text";
 
 const inputTextVariants = cva(
@@ -23,10 +22,22 @@ const inputTextVariants = cva(
   }
 );
 
-export default function InputText({size, className, disabled, ...props}) {
+interface InputTextProps
+  extends VariantProps<typeof inputTextVariants>,
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+  size?: "md";
+  disabled?: boolean;
+}
+
+export default function InputText({
+  size,
+  className,
+  disabled,
+  ...props
+}: InputTextProps) {
   return (
     <input
-      className={cn(
+      className={cx(
         inputTextVariants({size, disabled}),
         textVariants(),
         className

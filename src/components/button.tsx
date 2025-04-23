@@ -1,4 +1,4 @@
-import {cva} from "class-variance-authority";
+import {cva, type VariantProps} from "class-variance-authority";
 import Text from "./text";
 import Icon from "./icon";
 import SpinnerIcon from "../assets/icons/spinner.svg?react";
@@ -47,6 +47,15 @@ const iconVariants = cva("fill-gray-100 transition", {
   },
 });
 
+interface ButtonProps
+  extends VariantProps<typeof buttonVariants>,
+    React.HTMLAttributes<HTMLButtonElement> {
+  variant?: "primary";
+  size?: "md";
+  disabled?: boolean;
+  icon?: React.ComponentProps<typeof Icon>["svg"];
+}
+
 export default function Button({
   variant,
   size,
@@ -56,7 +65,7 @@ export default function Button({
   children,
   icon: IconComponent,
   ...props
-}) {
+}: ButtonProps) {
   return (
     <button
       className={buttonVariants({
@@ -74,7 +83,7 @@ export default function Button({
           className={iconVariants({variant, size, handling})}
         />
       )}
-      {children && <Text variant="base-bold">{children}</Text>}
+      {children && <Text variant="body-md-bold">{children}</Text>}
     </button>
   );
 }

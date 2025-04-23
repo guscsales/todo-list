@@ -1,9 +1,10 @@
 import React from "react";
 import useLocalStorage from "use-local-storage";
 import {delay} from "../helpers/utils";
+import {Task} from "../models/task";
 
 export default function useTasks() {
-  const [tasksData] = useLocalStorage("tasks", []);
+  const [tasksData] = useLocalStorage<Task[]>("tasks", []);
   const [tasks, setTasks] = React.useState(tasksData);
   const [isLoadingTasks, setIsLoadingTasks] = React.useState(true);
 
@@ -11,10 +12,6 @@ export default function useTasks() {
     if (isLoadingTasks) {
       console.log("Carregando tarefas...");
 
-      /* 
-        Simulação de requisição, espera 3 segundos
-        para retornar as tarefas
-      */
       await delay(1);
 
       console.log("Tarefas carregadas!");

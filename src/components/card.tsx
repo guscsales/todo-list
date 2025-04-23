@@ -1,6 +1,5 @@
 import React from "react";
-import cn from "classnames";
-import {cva} from "class-variance-authority";
+import {cva, cx, type VariantProps} from "class-variance-authority";
 
 const cardVariants = cva(
   "rounded-lg border border-solid border-gray-200 bg-white shadow-sm",
@@ -16,17 +15,24 @@ const cardVariants = cva(
     },
   }
 );
+
+interface CardProps
+  extends VariantProps<typeof cardVariants>,
+    React.HTMLAttributes<HTMLElement> {
+  as?: keyof React.JSX.IntrinsicElements;
+}
+
 export default function Card({
   as = "div",
   size,
   children,
   className,
   ...props
-}) {
+}: CardProps) {
   return React.createElement(
     as,
     {
-      className: cn(cardVariants({size}), className),
+      className: cx(cardVariants({size}), className),
       ...props,
     },
     children

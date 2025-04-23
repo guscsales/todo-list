@@ -1,4 +1,4 @@
-import cn from "classnames";
+import {cx} from "class-variance-authority";
 import Badge from "../components/badge";
 import Text from "../components/text";
 import TaskItem from "./task-item";
@@ -6,27 +6,32 @@ import useTasks from "../hooks/use-tasks";
 import Button from "../components/button";
 import PlusIcon from "../assets/icons/plus.svg?react";
 import useTask from "../hooks/use-task";
-export default function TaskList({className, ...props}) {
+import {Task, TaskState} from "../models/task";
+
+export default function TaskList({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
   const {tasks, tasksCount, concludedTasksCount, isLoadingTasks} = useTasks();
   const {createTask, isCreatingTask} = useTask();
 
   async function handleCreateTask() {
-    await createTask({title: "", state: "creating"});
+    await createTask({title: ""});
   }
 
   return (
-    <article className={cn("space-y-6", className)} {...props}>
+    <article className={cx("space-y-6", className)} {...props}>
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Text type="body-sm-bold" className="text-gray-300">
+          <Text variant="body-sm-bold" className="text-gray-300">
             Tarefas
           </Text>
-          <Badge type="secondary" loading={isLoadingTasks}>
+          <Badge variant="secondary" loading={isLoadingTasks}>
             {tasksCount}
           </Badge>
         </div>
         <div className="flex items-center gap-2">
-          <Text type="body-sm-bold" className="text-gray-300">
+          <Text variant="body-sm-bold" className="text-gray-300">
             Concluídas
           </Text>
           <Badge loading={isLoadingTasks}>
@@ -41,7 +46,7 @@ export default function TaskList({className, ...props}) {
           className="w-full"
           onClick={handleCreateTask}
           handling={isCreatingTask}
-          disabled={tasks.some((task) => task.state === "creating")}
+          disabled={tasks.some((task) => task.state === TaskState.CREATING)}
         >
           Nova tarefa
         </Button>
@@ -49,15 +54,15 @@ export default function TaskList({className, ...props}) {
       {!isLoadingTasks && tasksCount > 0 && (
         <section className="space-y-2">
           {tasks.map((task) => (
-            <TaskItem key={task.id} {...task} />
+            <TaskItem key={task.id} task={task} />
           ))}
         </section>
       )}
       {isLoadingTasks && (
         <section className="space-y-2">
-          <TaskItem loading />
-          <TaskItem loading />
-          <TaskItem loading />
+          <TaskItem task={{} as Task} loading />
+          <TaskItem task={{} as Task} loading />
+          <TaskItem task={{} as Task} loading />
         </section>
       )}
     </article>
