@@ -18,7 +18,7 @@ const cardVariants = cva(
 
 interface CardProps
   extends VariantProps<typeof cardVariants>,
-    React.HTMLAttributes<HTMLElement> {
+    React.ComponentProps<"div"> {
   as?: keyof React.JSX.IntrinsicElements;
 }
 

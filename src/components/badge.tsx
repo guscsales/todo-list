@@ -49,7 +49,7 @@ const badgeSkeletonVariants = cva("", {
 
 interface BadgeProps
   extends VariantProps<typeof badgeVariants>,
-    React.HTMLAttributes<HTMLDivElement> {
+    React.ComponentProps<"div"> {
   children: React.ReactNode;
   loading?: boolean;
 }

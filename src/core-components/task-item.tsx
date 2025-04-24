@@ -13,7 +13,7 @@ import Skeleton from "../components/skeleton";
 import InputText from "../components/input-text";
 import {Task} from "../models/task";
 
-interface TaskItemProps extends React.HTMLAttributes<HTMLFormElement> {
+interface TaskItemProps extends React.ComponentProps<"form"> {
   task: Task;
   loading?: boolean;
 }
@@ -55,12 +55,8 @@ export default function TaskItem({task, loading, ...props}: TaskItemProps) {
   }
 
   return (
-    <form onSubmit={handleSaveTask}>
-      <Card
-        size="md"
-        className="flex items-center justify-between gap-4"
-        {...props}
-      >
+    <form onSubmit={handleSaveTask} {...props}>
+      <Card size="md" className="flex items-center justify-between gap-4">
         {!isEditing ? (
           <>
             <InputCheckbox

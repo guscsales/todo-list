@@ -3,8 +3,7 @@ import Icon from "./icon";
 import CheckIcon from "../assets/icons/check.svg?react";
 import Skeleton from "./skeleton";
 
-interface InputCheckboxProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputCheckboxProps extends React.ComponentProps<"input"> {
   loading?: boolean;
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 
-interface IconProps extends React.SVGProps<SVGSVGElement> {
-  svg: React.FC<React.SVGProps<SVGSVGElement>>;
+interface IconProps extends React.ComponentProps<"svg"> {
+  svg: React.FC<React.ComponentProps<"svg">>;
 }
 
 export default function Icon({svg, ...props}: IconProps) {

@@ -15,7 +15,7 @@ const skeletonVariants = cva("animate-pulse bg-gray-200", {
 
 interface SkeletonProps
   extends VariantProps<typeof skeletonVariants>,
-    React.HTMLAttributes<HTMLDivElement> {
+    React.ComponentProps<"div"> {
   rounded?: "sm" | "lg" | "full";
 }
 

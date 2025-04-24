@@ -49,10 +49,7 @@ const iconVariants = cva("fill-gray-100 transition", {
 
 interface ButtonProps
   extends VariantProps<typeof buttonVariants>,
-    React.HTMLAttributes<HTMLButtonElement> {
-  variant?: "primary";
-  size?: "md";
-  disabled?: boolean;
+    Omit<React.ComponentProps<"button">, "size" | "disabled"> {
   icon?: React.ComponentProps<typeof Icon>["svg"];
 }
 

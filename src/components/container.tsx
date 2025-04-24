@@ -1,7 +1,7 @@
 import React from "react";
 import {cx} from "class-variance-authority";
 
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ContainerProps extends React.ComponentProps<"div"> {
   as?: keyof React.JSX.IntrinsicElements;
 }
 

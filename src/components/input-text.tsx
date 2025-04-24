@@ -24,7 +24,7 @@ const inputTextVariants = cva(
 
 interface InputTextProps
   extends VariantProps<typeof inputTextVariants>,
-    Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+    Omit<React.ComponentProps<"input">, "size"> {
   size?: "md";
   disabled?: boolean;
 }

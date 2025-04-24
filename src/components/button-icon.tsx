@@ -56,7 +56,7 @@ const iconVariants = cva("transition", {
 
 interface ButtonIconProps
   extends VariantProps<typeof buttonIconVariants>,
-    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "size" | "disabled"> {
+    Omit<React.ComponentProps<"button">, "size" | "disabled"> {
   icon: React.ComponentProps<typeof Icon>["svg"];
   loading?: boolean;
 }

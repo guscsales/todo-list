@@ -11,7 +11,7 @@ import {Task, TaskState} from "../models/task";
 export default function TaskList({
   className,
   ...props
-}: React.HTMLAttributes<HTMLElement>) {
+}: React.ComponentProps<"article">) {
   const {tasks, tasksCount, concludedTasksCount, isLoadingTasks} = useTasks();
   const {createTask, isCreatingTask} = useTask();
 
